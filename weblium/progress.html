@@ -84,6 +84,10 @@
             let amount = transaction["amount"] / 100;
             let comment = transaction["comment"];
 
+            if (comment === undefined) {
+                comment = "відсутній"
+            }
+
             let date = new Date(0);
             date.setUTCSeconds(transaction["time"]);
 
@@ -93,9 +97,9 @@
                 " грн</b></h4>" +
                 '<p>' +
                 date.toISOString().split('T')[0] +
-                '<br/>Коментар: ' +
+                '<br/>Коментар: <i>' +
                 comment +
-                '</p>' +
+                '</i></p>' +
                 "</div></div>");
         }
 
