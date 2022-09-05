@@ -84,11 +84,16 @@
             let amount = transaction["amount"] / 100;
             let comment = transaction["comment"];
 
+            let date = new Date(0);
+            date.setUTCSeconds(transaction["time"]);
+
             $('#transactions').append("<div class=\"card\"><div class=\"container\">" +
                 "<h4><b>Сума " +
                 amount +
                 " грн</b></h4>" +
-                '<p>Коментарій: ' +
+                '<p>' +
+                date.toISOString().split('T')[0] +
+                '<br/>Коментарій: ' +
                 comment +
                 '</p>' +
                 "</div></div>");
@@ -103,6 +108,10 @@
                     // process progress bar data
                     let balance = Number(transactions[0]["balance"] / 100);
                     let current_progress = balance / goal * 100;
+
+                    if (current_progress > 100) {
+                        current_progress = 100;
+                    }
 
                     let bar = $("#progress-bar");
                     bar.width(current_progress + "%");
@@ -123,7 +132,7 @@
                 dataType: "json",
                 url: "http://127.0.0.1:5000/api/best",
                 success: function (data) {
-                    $("#best").html("Найбільший донат: " + data["donate"] + " гривень")
+                    $("#best").html("Найбільший донат: " + data["donate"] / 100 + " гривень")
                 },
                 error: function (error) {
                     console.log(error.responseText);
