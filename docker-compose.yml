@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+  acu-cn-ua:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        ACCOUNT: ${ACCOUNT}
+        TOKEN: ${TOKEN}
+    command: /bin/sh -c
+      "gunicorn --bind 0.0.0.0:5000 application:app"
+    ports:
+      - "80:5000"
+    environment:
+      - ACCOUNT=${ACCOUNT}
+      - TOKEN=${TOKEN}

@@ -1,0 +1,11 @@
+branch-defaults:
+  prod:
+    environment: acu-cn-ua-prod
+global:
+  application_name: acu-cn-ua
+  default_platform: Docker
+  default_region: us-east-1
+  include_git_submodules: true
+  profile: eb-cli
+  sc: git
+  workspace_type: Application

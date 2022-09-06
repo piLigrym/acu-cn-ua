@@ -107,7 +107,7 @@
         $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "http://127.0.0.1:5000/api/transactions",
+                url: "http://0.0.0.0:5000/api/transactions",
                 success: function (transactions) {
                     // process progress bar data
                     let balance = Number(transactions[0]["balance"] / 100);
@@ -134,7 +134,7 @@
         $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "http://127.0.0.1:5000/api/best",
+                url: "http://0.0.0.0:5000/api/best",
                 success: function (data) {
                     $("#best").html("Найбільший донат: " + data["donate"] / 100 + " гривень")
                 },
